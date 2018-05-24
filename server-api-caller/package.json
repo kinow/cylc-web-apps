@@ -1,0 +1,13 @@
+{
+  "name": "cylc-server-api-caller",
+  "version": "0.0.0",
+  "description": "display raw suite data",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "license": "GPLv3",
+  "devDependencies": {
+    "electron": "^1.4.12"
+  }
+}

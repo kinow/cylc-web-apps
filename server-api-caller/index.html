@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Cylc Server API Caller</title>
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet"> 
+    <link rel="stylesheet" href="./main.css">
+    <!-- Scripts -->
+    <script src="./cylc.js"></script>
+  </head>
+
+  <body>
+    <h1>Cylc Server API Caller</h1>
+
+    <div id="message">
+      Set suite SERVER, PORT, and API, and hit &lt;enter&gt; or "Call".
+    </div>
+
+    <div id="content">
+      <div id="controls">
+        <ul>
+          <li> <input type="text" id="textServer" value="HOSTNAME:PORT"></li>
+          <li>
+            <select id="selectAPI">
+              <!-- (we could add these options dynamically) -->
+              <option value="identify" selected>Suite Identity</option>
+              <option value="get_cylc_version">Cylc Version</option>
+              <option value="get_suite_info">Suite Info</option>
+              <option value="get_suite_state_summary">Suite State</option>
+            </select>
+          </li>
+          <li> <button id="loadButton">Call</button></li>
+        </ul>
+      </div>
+      <pre id="cylc-data"></pre>
+    </div>
+
+  </body>
+</html>
