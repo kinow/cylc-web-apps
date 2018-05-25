@@ -1,15 +1,12 @@
 # Cylc Server API Caller
 
-## First see main README.md
+**See main repository README.d for requirements on the Cylc server program.**
 
-## This App
+## App Description
 
-- Displays raw suite JSON data for one suite.
+- Run a suite, enter server:port and hit '<enter>' or the 'Call' button
+- Displays retrieved suite data as a raw JSON string
 - Vanilla Javascript
-
-For the moment:
-- digest authentication must be disabled in the suite server program
-- self-signed SSL certificates must be ignored.
 
 ## Install
 ```
