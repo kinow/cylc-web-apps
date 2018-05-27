@@ -9,7 +9,7 @@ var state_color_map = {
   "submitted": "pink",
   "submit-failed": "orange",
   "waiting": "blue",
-  "ready": "#afa",
+  "ready": "#8f8",
   "ghost": "#ccc",
   "runahead": "skyblue",
   "FAMILY": "#aaa"
@@ -30,8 +30,9 @@ function hello(states) {
 // https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd 
 // API ref: https://github.com/d3/d3-hierarchy 
 // see also:
-//   http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html
-//   with panning: http://bl.ocks.org/robschmuecker/7926762
+//  - http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html
+//  - with panning: http://bl.ocks.org/robschmuecker/7926762
+//  - auto sizing!: http://bl.ocks.org/robschmuecker/7880033  
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
@@ -119,6 +120,9 @@ function update(source, duration) {
       })
       .attr("text-anchor", function(d) {
           return d.children || d._children ? "end" : "start";
+      })
+      .style("fill", function(d) {
+          return color_by_state(d.data["state"]);
       })
       .text(function(d) { return d.data.name; });
 
