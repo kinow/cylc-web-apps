@@ -49,7 +49,8 @@ var svg = d3.select("body").append("svg")
 var i = 0,
     root;
 
-// declares a tree layout and assigns the size
+// declare a tree or cluster layout and assign the size
+//var treemap = d3.cluster().size([height, width]);
 var treemap = d3.tree().size([height, width]);
 
 // Assigns parent, children, height, depth
