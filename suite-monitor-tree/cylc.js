@@ -28,6 +28,7 @@ function color_by_state(state) {
 function hello(states) {
 
 // https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd 
+// see also http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html 
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
