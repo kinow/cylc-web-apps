@@ -28,7 +28,10 @@ function color_by_state(state) {
 function hello(states) {
 
 // https://bl.ocks.org/d3noob/43a860bc0024792f8803bba8ca0d5ecd 
-// see also http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html 
+// API ref: https://github.com/d3/d3-hierarchy 
+// see also:
+//   http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html
+//   with panning: http://bl.ocks.org/robschmuecker/7926762
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
@@ -51,12 +54,15 @@ var i = 0,
 
 // declare a tree or cluster layout and assign the size
 //var treemap = d3.cluster().size([height, width]);
-var treemap = d3.tree().size([height, width]);
+var tree = d3.tree().size([height, width]);
 
 // Assigns parent, children, height, depth
 root = d3.hierarchy(states, function(d) { return d.children; });
 root.x0 = height / 2;
 root.y0 = 0;
+
+// Sort the children.
+root.sort(function(a,b) { return a.data['name'] < b.data['name'] ? 0 : 1 });
 
 // Collapse after the second level
 //root.children.forEach(collapse);
@@ -74,9 +80,8 @@ function collapse(d) {
 function update(source, duration) {
 
   // Assigns the x and y position for the nodes
-  var states = treemap(root);
+  var states = tree(root);
 
-  // Compute the new tree layout.
   var nodes = states.descendants(),
       links = states.descendants().slice(1);
 
@@ -253,9 +258,6 @@ function make_request(server, call) {
   var URL = "https://" + server + "/" + call;
   request.onload = function() {
     updatePageMessage("GOOD:  <a href=" + URL + ">" + URL + "</a>", false);
-    console.log("ONE")
-    console.log(request.respons)
-    console.log("TWO")
     hello(request.response);
   }
   request.onerror = function(e) {
