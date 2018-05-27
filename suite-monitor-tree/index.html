@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Cylc Suite Monitor</title>
+    <!-- Stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet"> 
+    <link rel="stylesheet" href="./main.css">
+    <!-- Scripts -->
+    <script src="./cylc.js"></script>
+    <!--    <script src="https://d3js.org/d3.v4.min.js"></script>-->
+  </head>
+
+  <body>
+    <h1>Cylc Suite Monitor</h1>
+
+    <div id="message">
+      Set suite SERVER:PORT and hit &lt;enter&gt; or "Update".
+    </div>
+
+    <div id="content">
+      <div id="controls">
+        <ul>
+          <li> <input type="text" id="textServer" value="HOSTNAME:PORT"></li>
+          <li> <button id="loadButton">Update</button></li>
+        </ul>
+      </div>
+      <pre id="cylc-data"></pre>
+    </div>
+
+  </body>
+</html>
