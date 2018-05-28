@@ -37,11 +37,13 @@ function hello(states) {
 // Set the dimensions and margins of the diagram
 var margin = {top: 20, right: 90, bottom: 30, left: 90},
     width = 900 - margin.left - margin.right,
-    height = 1000 - margin.top - margin.bottom;
+    height = 1200 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
+//
+//
 d3.select("svg").remove()
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -53,9 +55,12 @@ var svg = d3.select("body").append("svg")
 var i = 0,
     root;
 
-// declare a tree or cluster layout and assign the size
-//var treemap = d3.cluster().size([height, width]);
+// declare a tree layout and assign the size
+// Set tree.nodeSize instead of tree.size to get constant size nodes, but this
+// would require initial position translation and  panning or scrolling.
+
 var tree = d3.tree().size([height, width]);
+//var tree = d3.tree().nodeSize([50, 50]);
 
 // Assigns parent, children, height, depth
 root = d3.hierarchy(states, function(d) { return d.children; });
