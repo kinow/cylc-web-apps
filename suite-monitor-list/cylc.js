@@ -1,4 +1,12 @@
-var d3 = require('d3')
+
+// Are we running in browser or electron native app?
+var native_app = true;
+try {
+ // var os = require('os');
+  var d3 = require('d3')
+} catch(err) {
+  var native_app = false;
+}
 
 var state_color_map = {
   "held": "magenta",
@@ -18,7 +26,6 @@ var state_color_map = {
 function color_by_state(state) {
   col = state_color_map[state];
   if (col === undefined) {
-    console.log("ERROR", state);
     return "purple";
   } else { 
     return col;
@@ -58,7 +65,7 @@ function nestedList(states) {
         .append("li")
         .attr("id", "child")
         .text(function (d, i) {
-          return d.name;
+          return d.name + '...' + d.batch_sys;
         })
       .style("color", function (d, i) {
         return color_by_state(d.state);
@@ -75,14 +82,6 @@ function nestedList(states) {
     }
 }
 
-// Are we running in browser or electron native app?
-var native_app = true;
-try {
-  var os = require('os');
-} catch(err) {
-  var native_app = false;
-}
-
 window.onload = function() {
   var inputServer = document.getElementById("textServer");
   if (inputServer.value == "HOSTNAME:PORT") {
@@ -90,7 +89,6 @@ window.onload = function() {
       inputServer.value = os.hostname() + ":43001";
     } else {
       // For browser "file://" location.hostname etc. is not defined.
-      console.log("location.pathname: " + location.pathname);
       inputServer.value = "HOSTNAME:43001";
     }
   }

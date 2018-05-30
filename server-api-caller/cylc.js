@@ -13,8 +13,7 @@ window.onload = function() {
       inputServer.value = os.hostname() + ":43001";
     } else {
       // For browser "file://" location.hostname etc. is not defined.
-      console.log("location.pathname: " + location.pathname);
-      inputServer.value = "HOSTNAME:43001";
+      inputServer.value = "vagrant:43002";
     }
   }
   var selectAPI = document.getElementById("selectAPI");
@@ -38,6 +37,7 @@ window.onload = function() {
 function make_request(server, call) {
   var request = new XMLHttpRequest();
   var URL = "https://" + server + "/" + call;
+  console.log(URL);
   request.onload = function() {
     updatePageMessage("GOOD:  <a href=" + URL + ">" + URL + "</a>", false);
     updatePageJSON(request.response);
