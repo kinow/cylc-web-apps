@@ -1,4 +1,13 @@
-var d3 = require('d3')
+// Are we running in browser or electron native app?
+var native_app = true;
+try {
+  var os = require('os');
+  var d3 = require('d3')
+} catch(err) {
+  var native_app = false;
+}
+
+
 
 var state_color_map = {
   "held": "magenta",
@@ -228,14 +237,6 @@ function update(source, duration) {
     update(d, duration=250);
   }
 }
-}
-
-// Are we running in browser or electron native app?
-var native_app = true;
-try {
-  var os = require('os');
-} catch(err) {
-  var native_app = false;
 }
 
 window.onload = function() {
